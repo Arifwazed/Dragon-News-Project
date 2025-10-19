@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
 
 const AuthProvider = ({children}) => {
@@ -26,6 +26,11 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    // update user
+    const updateUser = (updatedData) => {
+        return updateProfile(auth.currentUser,updatedData)
+    }
+
     // when register page reload it hold the user information
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
@@ -42,7 +47,8 @@ const AuthProvider = ({children}) => {
         createUser,
         logOutUser,
         logInUser,
-        loading
+        loading,
+        updateUser
     }
     return (
         <AuthContext value={authData}>{children}</AuthContext>
