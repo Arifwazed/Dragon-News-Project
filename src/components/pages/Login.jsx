@@ -1,9 +1,15 @@
-import React, { use } from "react";
-import { Link } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../provider/AuthContext";
 
 const Login = () => {
     const {logInUser} = use(AuthContext)
+    const [error,setError] = useState("")
+    const location = useLocation();
+    console.log("From login: ",location)
+
+    const navigate = useNavigate();
+
     const handleLogIn = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -11,11 +17,14 @@ const Login = () => {
         const password = form.password.value;
         logInUser(email,password)
         .then(result => {
-            console(result.user)
+            // console(result.user)
             alert("Log In Successfully")
+            navigate(`${location.state ? location.state : '/'}`)
         })
         .catch(error => {
-            alert(error.message)
+            // alert(error.message)
+            const errorMessage = error.code;
+            setError(errorMessage)
         })
     }
   return (
@@ -33,6 +42,7 @@ const Login = () => {
                 className="input w-full"
                 placeholder="Email"
                 name="email"
+                required
               />
               <label className="label text-sm">Password</label>
               <input
@@ -40,10 +50,14 @@ const Login = () => {
                 className="input w-full"
                 placeholder="Password"
                 name="password"
+                required
               />
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
+              {
+                error ? <p className="text-error font-semibold">{error}</p> : ""
+              }
               <button type="submit" className="btn btn-neutral mt-4">
                 Login
               </button>
