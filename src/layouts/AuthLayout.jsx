@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { Outlet } from 'react-router';
+import { ToastContainer } from 'react-toastify';
 
 const AuthLayout = () => {
     return (
@@ -11,7 +12,7 @@ const AuthLayout = () => {
             <main className='w-11/12 mx-auto py-30'>
                 <Outlet></Outlet>
             </main>
-
+            <ToastContainer position="top-center" autoClose={2500} theme="colored"/>
         </div>
     );
 };
