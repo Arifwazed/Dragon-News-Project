@@ -1,9 +1,12 @@
-import React, { use, useState } from "react";
+import React, { use, useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../provider/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-    const {logInUser} = use(AuthContext)
+    const {logInUser,forgetUserPassword} = use(AuthContext)
+    const [email,setEmail] = useState("")
     const [error,setError] = useState("")
     const location = useLocation();
     // console.log("From login: ",location)
@@ -13,15 +16,38 @@ const Login = () => {
     const handleLogIn = (event) => {
         event.preventDefault();
         const form = event.target;
-        const email = form.email.value;
+        // const email = form.email.value;
         const password = form.password.value;
         logInUser(email,password)
         .then(result => {
             // console(result.user)
-            alert("Log In Successfully")
-            navigate(`${location.state ? location.state : '/'}`)
+            // alert("Log In Successfully")
+            // toast.success('Log In Successfully')
+            toast.success("Login successful!");
+            // navigate(`${location.state ? location.state : '/'}`)
+            setTimeout(() => {
+          navigate(location.state ? location.state : "/");
+        }, 1500);
         })
         .catch(error => {
+            // alert(error.message)
+            const errorMessage = error.code;
+            setError(errorMessage)
+        })
+    }
+
+    const handleResetPassword = () => {
+      // const form = event.target;
+      // const email = form.email.value;
+      if(!email){
+        alert('enter your email first')
+      }
+
+      forgetUserPassword(email)
+      .then(result => {
+        console.log(result.user)
+      })
+      .catch(error => {
             // alert(error.message)
             const errorMessage = error.code;
             setError(errorMessage)
@@ -42,6 +68,7 @@ const Login = () => {
                 className="input w-full"
                 placeholder="Email"
                 name="email"
+                onChange={(event) => setEmail(event.target.value)}
                 required
               />
               <label className="label text-sm">Password</label>
@@ -52,7 +79,7 @@ const Login = () => {
                 name="password"
                 required
               />
-              <div>
+              <div onClick={handleResetPassword}>
                 <a className="link link-hover">Forgot password?</a>
               </div>
               {
@@ -71,6 +98,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <ToastContainer position="top-right" />
     </div>
   );
 };

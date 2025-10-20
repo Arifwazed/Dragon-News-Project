@@ -7,6 +7,7 @@ import LeftAside from '../components/homelayout/LeftAside';
 import RightAside from '../components/homelayout/RightAside';
 import Loading from '../components/pages/Loading';
 
+
 const HomeLayout = () => {
     const {state} = useNavigation()
     return (
