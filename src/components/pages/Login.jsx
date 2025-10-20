@@ -6,7 +6,7 @@ const Login = () => {
     const {logInUser} = use(AuthContext)
     const [error,setError] = useState("")
     const location = useLocation();
-    console.log("From login: ",location)
+    // console.log("From login: ",location)
 
     const navigate = useNavigate();
 
