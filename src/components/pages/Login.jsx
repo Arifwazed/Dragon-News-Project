@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-    const {logInUser,forgetUserPassword} = use(AuthContext)
+    const {logInUser,forgetUserPassword,google,setGoogle,github,setGithub} = use(AuthContext)
     const [email,setEmail] = useState("")
     const [error,setError] = useState("")
     const location = useLocation();
@@ -23,6 +23,7 @@ const Login = () => {
             // console(result.user)
             // alert("Log In Successfully")
             // toast.success('Log In Successfully')
+            if(github == true || google == true){setGithub(false),setGoogle(false)}
             toast.success("Login successfully!");
             // navigate(`${location.state ? location.state : '/'}`)
             setTimeout(() => {
@@ -45,7 +46,7 @@ const Login = () => {
 
       forgetUserPassword(email)
       .then(result => {
-        console.log(result.user)
+        // console.log(result.user)
       })
       .catch(error => {
             // alert(error.message)

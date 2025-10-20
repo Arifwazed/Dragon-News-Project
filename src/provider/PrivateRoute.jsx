@@ -10,7 +10,8 @@ const PrivateRoute = ({children}) => {
     if(loading){
         return <Loading></Loading>
     }
-    if(users && users?.email){
+    // if(users && users?.email) {it doesn't work only for github login}
+    if(users ){
         return children
     }
     return <Navigate state={location.pathname} to="/auth/login"></Navigate> 

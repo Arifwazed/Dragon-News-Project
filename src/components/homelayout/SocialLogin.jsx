@@ -4,16 +4,33 @@ import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../../provider/AuthContext';
 
 const SocialLogin = () => {
-    const {logInGoogleUser,users} = use(AuthContext)
-    const [google,setGoogle] = useState(false)
+    const {logInGoogleUser,users,logInGithubUser,google,setGoogle,github,setGithub} = use(AuthContext)
+    // const [google,setGoogle] = useState(false)
+    // const [github,setGithub] = useState(false)
     const handleGoogle = () => {
-        console.log('google button clicked')
+        // console.log('google button clicked')
         logInGoogleUser()
         .then(result => {
             const googleUser = result.user;
-            console.log(googleUser)
+            // console.log(googleUser)
             setGoogle(true)
+            if(github == true){setGithub(false)}
             alert('google login successful!!!')
+        })
+        .catch(error => {
+            console.log(error.code)
+        })
+    }
+
+    const handleGithub = () => {
+        // console.log('Github button clicked')
+        logInGithubUser()
+        .then(result => {
+            const githubUser = result.user;
+            // console.log("git user: ",githubUser)
+            setGithub(true)
+            if(google == true){setGoogle(false)}
+            alert('Github login successful!!!')
         })
         .catch(error => {
             console.log(error.code)
@@ -26,8 +43,12 @@ const SocialLogin = () => {
                 {
                     users ? (google ? "" : <button onClick={handleGoogle} className='btn btn-outline btn-secondary w-full '><FcGoogle size={24}/> Login with Google</button>) : <button onClick={handleGoogle} className='btn btn-outline btn-secondary w-full '><FcGoogle size={24}/> Login with Google</button>
                 }
+                {
+                    users ? (github ? "" : <button onClick={handleGithub} className='btn btn-outline btn-primary w-full '><FaGithub size={24}/> Login with Github</button>) : <button onClick={handleGithub} className='btn btn-outline btn-primary w-full '><FaGithub size={24}/> Login with Github</button>
+                }
+
                 {/* <button onClick={handleGoogle} className='btn btn-outline btn-secondary w-full '><FcGoogle size={24}/> Login with Google</button> */}
-                <button className='btn btn-outline btn-primary w-full '><FaGithub size={24}/> Login with Github</button>
+                {/* <button onClick={handleGithub} className='btn btn-outline btn-primary w-full '><FaGithub size={24}/> Login with Github</button> */}
             </div>
         </div>
     );
