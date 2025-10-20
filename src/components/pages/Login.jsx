@@ -23,7 +23,7 @@ const Login = () => {
             // console(result.user)
             // alert("Log In Successfully")
             // toast.success('Log In Successfully')
-            toast.success("Login successful!");
+            toast.success("Login successfully!");
             // navigate(`${location.state ? location.state : '/'}`)
             setTimeout(() => {
           navigate(location.state ? location.state : "/");
