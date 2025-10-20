@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import LeftAside from '../components/homelayout/LeftAside';
 import RightAside from '../components/homelayout/RightAside';
 import Loading from '../components/pages/Loading';
+import { ToastContainer } from 'react-toastify';
 
 
 const HomeLayout = () => {
@@ -33,6 +34,7 @@ const HomeLayout = () => {
                     <RightAside></RightAside>
                 </aside>
             </main>
+            <ToastContainer position="top-center" autoClose={2500} theme="colored"/>
         </div>
     );
 };

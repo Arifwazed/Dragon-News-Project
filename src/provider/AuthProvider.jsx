@@ -19,12 +19,14 @@ const AuthProvider = ({children}) => {
     // add google sign in
     const googleProvider = new GoogleAuthProvider();
     const logInGoogleUser = () => {
+        setLoading(false)
         return signInWithPopup(auth,googleProvider)
     }
 
     // add github sign in
     const githubProvider = new GithubAuthProvider();
     const logInGithubUser = () => {
+        setLoading(false)
         return signInWithPopup(auth,githubProvider)
     }
 
@@ -42,11 +44,13 @@ const AuthProvider = ({children}) => {
 
     // Forget password
     const forgetUserPassword = (email) => {
+        setLoading(false)
         return sendPasswordResetEmail(auth,email)
     }
 
     // update user
     const updateUser = (updatedData) => {
+        setLoading(false)
         return updateProfile(auth.currentUser,updatedData)
     }
 
@@ -76,6 +80,7 @@ const AuthProvider = ({children}) => {
     }
     return (
         <AuthContext value={authData}>{children}</AuthContext>
+        
         
     );
 };

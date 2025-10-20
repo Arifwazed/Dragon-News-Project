@@ -2,7 +2,7 @@ import React, { use, useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../provider/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
     const {logInUser,forgetUserPassword,google,setGoogle,github,setGithub} = use(AuthContext)
@@ -99,7 +99,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <ToastContainer position="top-right" />
+      {/* <ToastContainer position="top-center" autoClose={1000} theme="colored"/> */}
     </div>
   );
 };

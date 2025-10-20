@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import userImg from '../assets/user.png'
 import { AuthContext } from '../provider/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Navbar = () => {
     const {users,logOutUser} = use(AuthContext)
@@ -10,7 +11,7 @@ const Navbar = () => {
         logOutUser()
         .then(result => {
             // console.log(result.user)
-            alert('Log out Successfully')
+            toast.info('Log out Successfully')
         })
         .catch(error => {
             console.log(error.message)
@@ -32,6 +33,7 @@ const Navbar = () => {
                     users ? <button onClick={handleLogOut} className='btn btn-primary px-10 font-semibold'>Log Out</button> : <Link to="/auth/login" className='btn btn-primary px-10 font-semibold'>Login</Link>
                 }
                 
+            {/* <ToastContainer position="top-center" autoClose={1000} theme="colored"/> */}
             </div>
         </div>
     );
