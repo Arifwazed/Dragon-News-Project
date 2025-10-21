@@ -7,9 +7,20 @@ const FindUs = () => {
         <div>
             <h1 className='font-bold text-lg mb-3'>Find Us On</h1>
             <div>
-                <button className="btn btn-xs sm:btn-sm md:btn-md w-full bg-base-100 py-7 "><FaFacebook /> Facebook</button>
+                {/* <button className="btn btn-xs sm:btn-sm md:btn-md w-full bg-base-100 py-7 "><FaFacebook /> Facebook</button>
                 <button className="btn btn-xs sm:btn-sm md:btn-md w-full bg-base-100 py-7"><FaTwitter /> Twitter</button>
-                <button className="btn btn-xs sm:btn-sm md:btn-md w-full bg-base-100 py-7"><RiInstagramFill /> Instagram</button>
+                <button className="btn btn-xs sm:btn-sm md:btn-md w-full bg-base-100 py-7"><RiInstagramFill /> Instagram</button> */}
+
+                <button className="btn btn-xs sm:btn-sm md:btn-md w-full bg-base-100 py-7">
+                    <img width="30" height="30" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new"/>Facebook
+                </button>
+                <button className="btn btn-xs sm:btn-sm md:btn-md w-full bg-base-100 py-7">
+                    <img width="30" height="30" src="https://img.icons8.com/color/48/twitter--v1.png" alt="twitter--v1"/> Twitter
+                </button>
+                <button className="btn btn-xs sm:btn-sm md:btn-md w-full bg-base-100 py-7">
+                    <img width="30" height="30" src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="instagram-new--v1"/> Instagram
+                </button>
+
             </div>
         </div>
     );
